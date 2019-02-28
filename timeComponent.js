@@ -5,7 +5,7 @@ class Hello extends React.Component {
   render () {
     return <LiskHubExtensions.components.Box><h1>{this.props.t('Last  click at ')} {this.props.data.time}</h1> <LiskHubExtensions.components.Button
     label='Check time'
-    onClick={() => {this.props.onClickHandle();}} /></LiskHubExtensions.components.Box>
+    onClick={() => {this.props.actions.testExtensions();}} /></LiskHubExtensions.components.Box>
   }
 }
 
