@@ -4,21 +4,22 @@ import LiskHubExtensions from 'LiskHubExtensions'
 class cryptoTop extends React.Component {
 
   render () {
-	  
+	
+	let userCurrency=JSON.parse(localStorage.settings).currency;
 	const formatter = new Intl.NumberFormat('en-US', {
 		style: 'currency',
-		currency: 'USD',
+		currency: userCurrency,
 		minimumFractionDigits: 0,
 		maximumFractionDigits: 0
 	})
 	  
 	let maxResults=10;
-	fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page='+maxResults+'&page=1&sparkline=false')
+	fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency='+userCurrency.toLowerCase()+'&order=market_cap_desc&per_page='+maxResults+'&page=1&sparkline=false')
 	.then(function(response) {
 		return response.json();
 	})
 	.then(data => {
-		let content='<table><tr><th>Rank</th><th>Name</th><th>Market Cap (USD)</th></tr>';
+		let content='<table><tr><th>Rank</th><th>Name</th><th>Market Cap ('+userCurrency+')</th></tr>';
     
 		for(let i=0; i<data.length; i++){
 			content+='<tr><td>'+data[i].market_cap_rank+'</td><td>'+data[i].name+'</td><td>'+formatter.format(data[i].market_cap)+'</td></tr>';
