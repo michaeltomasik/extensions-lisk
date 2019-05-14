@@ -25,8 +25,6 @@ class pendingRewards extends React.Component {
 				return response.json();
 			})
 			.then(data => {
-				console.log(data);
-				
 				//convert to json object
 				let data2json='[';
 				for(let val in data){
@@ -35,7 +33,6 @@ class pendingRewards extends React.Component {
 				data2json=data2json.substr(0,data2json.length-1)+"]";
 				data2json=JSON.parse(data2json);
 
-				console.log(data2json);
 				this.setState({
 					title: 'Pending Rewards for '+accountAddress,
 					isLoaded: true,
@@ -57,7 +54,6 @@ class pendingRewards extends React.Component {
 			<table><thead><tr><th>Delegate/Pool</th><th>Pending Lisk</th></tr></thead>
 			<tbody>
 			{isLoaded ? 
-				
 				rewards.map((item) =>
 				<tr key={item.delegate}>
 					<td>{item.delegate}</td>
